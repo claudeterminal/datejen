@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>date me doc — jen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fdfbf6;
+    --ink: #1e3a5f;
+    --ink-soft: #5a7a99;
+    --pen-red: #c83e4d;
+    --pen-green: #4a7c59;
+    --pen-purple: #7d5ba6;
+    --pen-pink: #e88aa0;
+    --pen-amber: #d99441;
+    --rule: rgba(120, 170, 210, 0.45);
+    --margin: rgba(220, 100, 110, 0.6);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { background: var(--paper); }
+  body {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(90deg, transparent 56px, var(--margin) 56px, var(--margin) 57px, transparent 57px),
+      repeating-linear-gradient(
+        transparent 0,
+        transparent 31px,
+        var(--rule) 31px,
+        var(--rule) 32px,
+        transparent 32px,
+        transparent 38px
+      );
+    color: var(--ink);
+    font-family: 'Caveat Brush', 'Caveat', cursive;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 38px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.22;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0;
+    padding: 18px 18px 80px 76px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* CONTACT */
+  .contact { margin-bottom: 6px; line-height: 38px; }
+  .contact .row { font-size: 1.15rem; }
+  .contact a {
+    color: var(--pen-red);
+    text-decoration: none;
+    border-bottom: 2px dotted var(--pen-red);
+  }
+
+  /* TITLE row - inline with by Jen */
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 6px 0 8px;
+  }
+  .title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--pen-red);
+    letter-spacing: 1px;
+  }
+  .by {
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    line-height: 1;
+  }
+  .by .name { color: var(--pen-red); }
+
+  /* COMPACT FACTS */
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
+    margin: 0 0 14px;
+    line-height: 38px;
+  }
+  .f {
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+  }
+  .f .emo {
+    font-size: 1.1em;
+    line-height: 1;
+    display: inline-block;
+  }
+  .f .lbl { color: var(--ink-soft); font-size: 0.85em; }
+  .f .val { color: var(--ink); }
+
+  /* animate fact emojis */
+  .f:nth-child(7n+1) .emo { animation: wiggle 2.6s ease-in-out infinite; }
+  .f:nth-child(7n+2) .emo { animation: bob 1.9s ease-in-out infinite; }
+  .f:nth-child(7n+3) .emo { animation: sway 2.4s ease-in-out infinite; }
+  .f:nth-child(7n+4) .emo { animation: pulse 2.1s ease-in-out infinite; }
+  .f:nth-child(7n+5) .emo { animation: wobble 2.8s ease-in-out infinite; }
+  .f:nth-child(7n+6) .emo { animation: spin 7s linear infinite; }
+  .f:nth-child(7n+7) .emo { animation: bob 2.3s ease-in-out infinite reverse; }
+
+  /* SECTIONS - tighter spacing */
+  section { margin-top: 18px; }
+  h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 2rem;
+    line-height: 38px;
+    color: var(--ink);
+    margin-bottom: 0;
+    display: inline-block;
+    position: relative;
+  }
+  h2::after {
+    content: "";
+    display: block;
+    height: 6px;
+    margin-top: -3px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='6' viewBox='0 0 200 6'%3E%3Cpath d='M2 3 Q 25 0, 50 3 T 100 3 T 150 2 T 198 3' stroke='%23c83e4d' stroke-width='2' fill='none' stroke-linecap='round' opacity='0.85'/%3E%3C/svg%3E") no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .lead {
+    line-height: 38px;
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .lead strong { color: var(--pen-red); font-weight: 400; }
+
+  /* BUBBLES - tighter */
+  .bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 6px;
+    align-items: center;
+    padding: 4px 0 2px;
+  }
+  .bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 14px 4px;
+    background: rgba(253, 251, 246, 0.85);
+    border: 2.2px solid var(--pen-red);
+    border-radius: 100px / 60px;
+    color: var(--ink);
+    font-family: 'Caveat Brush', cursive;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .bubble .emo {
+    font-size: 1.1em;
+    display: inline-block;
+    transform-origin: center;
+  }
+  .bubble .rate {
+    color: var(--pen-red);
+    margin-left: 3px;
+    font-size: 0.95em;
+  }
+  .bubbles .bubble:nth-child(3n+1) { transform: rotate(-1.2deg); }
+  .bubbles .bubble:nth-child(3n+2) { transform: rotate(0.8deg); border-color: var(--ink); }
+  .bubbles .bubble:nth-child(3n+2) .rate { color: var(--ink); }
+  .bubbles .bubble:nth-child(3n+3) { transform: rotate(-0.4deg); border-color: var(--pen-green); }
+  .bubbles .bubble:nth-child(3n+3) .rate { color: var(--pen-green); }
+  .bubbles .bubble:nth-child(5n) { border-color: var(--pen-purple); }
+  .bubbles .bubble:nth-child(5n) .rate { color: var(--pen-purple); }
+
+  /* enjoy bubbles scale by rating */
+  .bubble.s-11 { font-size: 1.7rem; padding: 4px 18px 6px; border-width: 3px; }
+  .bubble.s-10 { font-size: 1.5rem; padding: 4px 17px 6px; border-width: 2.8px; }
+  .bubble.s-9  { font-size: 1.35rem; padding: 3px 16px 5px; }
+  .bubble.s-8  { font-size: 1.2rem; }
+  .bubble.s-7  { font-size: 1.1rem; }
+  .bubble.s-6  { font-size: 1rem; padding: 2px 12px 3px; }
+
+  /* animations */
+  @keyframes wiggle { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(9deg)} }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+  @keyframes sway { 0%,100%{transform:translateX(-3px) rotate(-3deg)} 50%{transform:translateX(3px) rotate(3deg)} }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+  @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  @keyframes wobble { 0%,100%{transform:rotate(-4deg) translateY(0)} 25%{transform:rotate(4deg) translateY(-2px)} 75%{transform:rotate(-4deg) translateY(2px)} }
+
+  .bubble:nth-child(7n+1) .emo { animation: wiggle 2.4s ease-in-out infinite; }
+  .bubble:nth-child(7n+2) .emo { animation: bob 1.8s ease-in-out infinite; }
+  .bubble:nth-child(7n+3) .emo { animation: sway 2.8s ease-in-out infinite; }
+  .bubble:nth-child(7n+4) .emo { animation: pulse 2.2s ease-in-out infinite; }
+  .bubble:nth-child(7n+5) .emo { animation: spin 7s linear infinite; }
+  .bubble:nth-child(7n+6) .emo { animation: wobble 2.6s ease-in-out infinite; }
+  .bubble:nth-child(7n+7) .emo { animation: bob 2.4s ease-in-out infinite reverse; }
+  .bubble:nth-child(even) .emo { animation-delay: -0.9s; }
+  .bubble:nth-child(3n) .emo { animation-delay: -1.5s; }
+
+  /* PIE CHART */
+  .pie-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    padding-top: 4px;
+  }
+  .pie {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--pen-red) 0deg 216deg,
+      var(--ink) 216deg 262.8deg,
+      var(--pen-amber) 262.8deg 309.6deg,
+      var(--pen-green) 309.6deg 334.8deg,
+      var(--pen-purple) 334.8deg 356.4deg,
+      var(--pen-pink) 356.4deg 360deg
+    );
+    box-shadow: 0 0 0 3px var(--ink), 4px 5px 0 0 rgba(30,58,95,0.15);
+    transform: rotate(-3deg);
+    flex-shrink: 0;
+    animation: pieSpin 36s linear infinite;
+  }
+  @keyframes pieSpin {
+    from { transform: rotate(-3deg); }
+    to { transform: rotate(357deg); }
+  }
+  .legend { flex: 1; min-width: 200px; line-height: 30px; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 1.15rem;
+    line-height: 28px;
+  }
+  .legend-item .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px solid var(--ink);
+  }
+  .legend-item .pct { margin-left: auto; color: var(--pen-red); }
+  .legend-item .lemo { display: inline-block; animation: bob 2s ease-in-out infinite; }
+  .legend-item:nth-child(2) .lemo { animation: wiggle 2.4s ease-in-out infinite; }
+  .legend-item:nth-child(3) .lemo { animation: pulse 1.8s ease-in-out infinite; }
+  .legend-item:nth-child(4) .lemo { animation: spin 4s linear infinite; }
+  .legend-item:nth-child(5) .lemo { animation: sway 2.6s ease-in-out infinite; }
+  .legend-item:nth-child(6) .lemo { animation: wobble 2.2s ease-in-out infinite; }
+
+  /* Q&A */
+  .q {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 1.35rem;
+    line-height: 38px;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+  .q.bold { color: var(--pen-red); font-size: 1.45rem; }
+  .a {
+    color: var(--ink-soft);
+    padding-left: 14px;
+    border-left: 2px dashed var(--pen-red);
+    margin-bottom: 6px;
+    line-height: 38px;
+    font-size: 1.1rem;
+  }
+  .a strong { color: var(--pen-red); font-weight: 400; }
+
+  /* CTA */
+  .cta { margin-top: 36px; }
+  .cta-btn {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 1.9rem;
+    color: var(--pen-red);
+    text-decoration: none;
+    border: 3px solid var(--pen-red);
+    border-radius: 100px / 60px;
+    padding: 2px 28px 6px;
+    display: inline-block;
+    background: var(--paper);
+    transform: rotate(-1.5deg);
+    transition: transform 0.2s ease;
+  }
+  .cta-btn:hover { transform: rotate(0deg) scale(1.05); }
+
+  @media (max-width: 520px) {
+    .wrap { padding-left: 70px; padding-right: 12px; }
+    .pie { width: 150px; height: 150px; }
+    .title { font-size: 2.8rem; }
+    .bubble.s-11 { font-size: 1.45rem; }
+    .bubble.s-10 { font-size: 1.35rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="contact">
+    <div class="row">📱 telegram <a href="https://t.me/jenn_pei">@jenn_pei</a> · 💬 whatsapp <a href="https://wa.me/19177431266">917-743-1266</a> · ✉️ text <a href="sms:+19177431266">917-743-1266</a></div>
+  </div>
+
+  <div class="title-row">
+    <h1 class="title">date me doc</h1>
+    <span class="by">by <span class="name">Jen</span> ♡</span>
+  </div>
+
+  <div class="facts">
+    <span class="f"><span class="emo">👤</span><span class="val">Jen</span></span>
+    <span class="f"><span class="emo">🎂</span><span class="val">32</span></span>
+    <span class="f"><span class="emo">📍</span><span class="val">Redwood City, Bay Area</span></span>
+    <span class="f"><span class="emo">📏</span><span class="val">5'2.5"</span></span>
+    <span class="f"><span class="emo">💕</span><span class="val">men or women</span></span>
+    <span class="f"><span class="emo">🌏</span><span class="val">Taiwanese</span></span>
+    <span class="f"><span class="emo">🙏</span><span class="val">agnostic</span></span>
+    <span class="f"><span class="emo">🎓</span><span class="val">bachelor's</span></span>
+    <span class="f"><span class="emo">💼</span><span class="val">part-time marketing</span></span>
+    <span class="f"><span class="emo">💆</span><span class="lbl">vices:</span><span class="val">massage</span></span>
+    <span class="f"><span class="emo">👶</span><span class="val">wants kids — open to surrogacy</span></span>
+  </div>
+
+  <section>
+    <h2>how i roughly spend my time these days</h2>
+    <div class="pie-wrap">
+      <div class="pie"></div>
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:var(--pen-red)"></span><span class="lemo">🤖</span> ai coding <span class="pct">60%</span></div>
+        <div class="legend-item"><span class="dot" style="background:var(--ink)"></span><span class="lemo">📣</span> marketing clients <span class="pct">13%</span></div>
+        <div class="legend-item"><span class="dot" style="background:var(--pen-amber)"></span><span class="lemo">🧘</span> improving health <span class="pct">13%</span></div>
+        <div class="legend-item"><span class="dot" style="background:var(--pen-green)"></span><span class="lemo">💪</span> exercising <span class="pct">7%</span></div>
+        <div class="legend-item"><span class="dot" style="background:var(--pen-purple)"></span><span class="lemo">👯</span> friends <span class="pct">6%</span></div>
+        <div class="legend-item"><span class="dot" style="background:var(--pen-pink)"></span><span class="lemo">💕</span> dating <span class="pct">1%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>things i enjoy</h2>
+    <div class="bubbles">
+      <span class="bubble s-11"><span class="emo">💆</span>bodywork massage<span class="rate">11/10</span></span>
+      <span class="bubble s-10"><span class="emo">🤖</span>ai coding + building<span class="rate">10/10</span></span>
+      <span class="bubble s-10"><span class="emo">💻</span>hackathons<span class="rate">10/10</span></span>
+      <span class="bubble s-9"><span class="emo">🎧</span>learning DJing<span class="rate">9/10</span></span>
+      <span class="bubble s-9"><span class="emo">🧬</span>biohacking<span class="rate">9/10</span></span>
+      <span class="bubble s-9"><span class="emo">🎤</span>karaoke<span class="rate">9/10</span></span>
+      <span class="bubble s-8"><span class="emo">☀️</span>being in the sun<span class="rate">8/10</span></span>
+      <span class="bubble s-8"><span class="emo">🌱</span>grass/sand grounding<span class="rate">8/10</span></span>
+      <span class="bubble s-8"><span class="emo">🎸</span>jamming on instruments</span>
+      <span class="bubble s-6"><span class="emo">🏓</span>pickleball<span class="rate">6/10</span></span>
+      <span class="bubble s-6"><span class="emo">🏀</span>basketball<span class="rate">6/10</span></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>interests</h2>
+    <div class="bubbles">
+      <span class="bubble"><span class="emo">🧠</span>AI</span>
+      <span class="bubble"><span class="emo">🦾</span>robots</span>
+      <span class="bubble"><span class="emo">⚙️</span>automation</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>looking for</h2>
+    <div class="bubbles">
+      <span class="bubble"><span class="emo">💞</span>long-term → marriage</span>
+      <span class="bubble"><span class="emo">👶</span>open to kids</span>
+      <span class="bubble"><span class="emo">🫶</span>empathetic</span>
+      <span class="bubble"><span class="emo">💚</span>ok with chronic illness</span>
+      <span class="bubble"><span class="emo">🤓</span>curious + nerdy</span>
+      <span class="bubble"><span class="emo">🎯</span>direct</span>
+      <span class="bubble"><span class="emo">💪</span>thick skin</span>
+      <span class="bubble"><span class="emo">❤️</span>kind in action</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>i tend to click with</h2>
+    <p class="lead">people where i'm interested in what you talk about — or you love <em>replying</em> to conversations more than always bringing up topics. <strong>but not limited to:</strong></p>
+    <div class="bubbles">
+      <span class="bubble"><span class="emo">🔥</span>passionate people</span>
+      <span class="bubble"><span class="emo">🩺</span>doctors</span>
+      <span class="bubble"><span class="emo">💻</span>software engineers</span>
+      <span class="bubble"><span class="emo">📣</span>marketing</span>
+      <span class="bubble"><span class="emo">🚀</span>tech founders</span>
+      <span class="bubble"><span class="emo">💆</span>massage therapists</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>questions for you</h2>
+
+    <p class="q bold">do you get straight to the point, or anything but?</p>
+    <p class="a"><strong>me:</strong> pretty direct. i like talking in the future tense — things that could improve my life, yours, or something we'd plan to do together.</p>
+
+    <p class="q">what do you find yourself talking about over and over?</p>
+    <p class="a"><strong>me:</strong> practical things with practical results. stuff you can build, fix, or improve.</p>
+
+    <p class="q">draw or type me a rough % pie chart of how you actually spend your time in the last month — what would you say?</p>
+
+    <p class="q">now draw or type how you ideally want to spend your time. what are the gaps?</p>
+
+    <p class="q">what happens when you don't get your way?</p>
+
+    <p class="q">when it comes down to it, if you and your gf disagree — should it be your way or her way? no one is right or wrong, it's just a difference in preferences.</p>
+  </section>
+
+  <div class="cta">
+    <a href="https://t.me/jenn_pei" class="cta-btn">say hello →</a>
+  </div>
+
+</div>
+</body>
+</html>
