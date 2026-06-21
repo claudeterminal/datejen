@@ -189,6 +189,16 @@
     border-radius: 24px;
   }
 
+  /* QUESTIONS — big heading, answer fields, send buttons */
+  .big-q { font-size: 2.6rem !important; font-weight: 300; letter-spacing: -0.03em; }
+  #qa .q { margin-top: 24px; }
+  .ans { width:100%; box-sizing:border-box; margin-top:8px; background:#0f0f10; border:1px solid #2a2a2a; border-radius:12px; color:var(--ink); font-family:'Inter',sans-serif; font-weight:300; font-size:0.95rem; line-height:1.5; padding:10px 12px; resize:vertical; }
+  .ans:focus { outline:none; border-color:#4a4a4a; }
+  .send-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  .send-btn { font-family:'Inter',sans-serif; font-weight:500; font-size:0.95rem; color:#0d0d0d; background:#f4f4f5; border:none; border-radius:100px; padding:12px 22px; cursor:pointer; transition:opacity .2s, transform .1s; }
+  .send-btn:hover { opacity:.85; }
+  .send-btn:active { transform: scale(.97); }
+
   /* CONTACT */
   .contact { text-align: center; margin-bottom: 4px; font-size: 0.92rem; }
   .contact a {
@@ -619,24 +629,41 @@
     </div>
   </section>
 
-  <section>
-    <h2>questions for you</h2>
+  <section id="qa">
+    <h2 class="big-q">questions for you</h2>
 
     <p class="q bold">1. I am going through health issues right now. Due to my symptoms for the next few months, I may have to do activities that let me lie down a lot — is that okay?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q bold">2. Due to my current symptoms, a lot of the time I'll just text you while you're in front of me (you can talk out loud) — do you think that'd be okay?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">3. When you talk, do you get straight to the point or typically elaborate a lot?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">4. What do you find yourself talking about over and over?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">5. Draw or type me a rough % pie chart of how you actually spend your time in the last month — what would you say?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">6. Now draw or type how you ideally want to spend your time. What are the gaps?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">7. What happens when you don't get your way?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
 
     <p class="q">8. When it comes down to it, if you and your partner disagree — should it be your way or their way? No one is right or wrong, it's just a difference in preferences.</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
+
+    <p class="q">9. What is your relationship with money and dating, do you like to take care of things—or split things, or do you have enough resources you don't mind either way?</p>
+    <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
+  
+    <div class="send-row">
+      <button type="button" class="send-btn" onclick="sendAnswers('wa')">💬 WhatsApp</button>
+      <button type="button" class="send-btn" onclick="sendAnswers('sms')">✉️ Text</button>
+      <button type="button" class="send-btn" onclick="sendAnswers('tg')">✈️ Telegram</button>
+    </div>
   </section>
 
   <div class="cta">
@@ -660,6 +687,26 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   els.forEach(function(el){ io.observe(el); });
 })();
+</script>
+<script>
+function sendAnswers(via){
+  var sec=document.getElementById('qa'); if(!sec) return;
+  var qs=sec.querySelectorAll('.q');
+  var out=["Meet Me — my answers 💛",""];
+  qs.forEach(function(q){
+    var ta=q.nextElementSibling;
+    var a=(ta&&ta.classList&&ta.classList.contains('ans'))?ta.value.trim():'';
+    out.push(q.textContent.trim());
+    out.push("→ "+(a||"(left blank)"));
+    out.push("");
+  });
+  var text=out.join("\n"); var enc=encodeURIComponent(text);
+  if(via==='wa'){ window.open('https://wa.me/19177431266?text='+enc,'_blank'); }
+  else if(via==='sms'){ window.location.href='sms:+19177431266?&body='+enc; }
+  else { try{ if(navigator.clipboard) navigator.clipboard.writeText(text); }catch(e){}
+    window.open('https://t.me/jenn_pei','_blank');
+    alert('Your answers were copied — paste them into the Telegram chat 💛'); }
+}
 </script>
 </body>
 </html>
