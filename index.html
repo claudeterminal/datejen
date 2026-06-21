@@ -141,22 +141,27 @@
   }
 
   /* VOICE BUTTON */
-  .voice-row { display: flex; justify-content: center; margin: 16px 0 4px; position: relative; z-index: 2; }
+  .voice-row { display: flex; justify-content: center; margin: 4px 0 18px; position: relative; z-index: 2; }
+  @keyframes voicePulse {
+    0%,100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(224,53,107,0.55); }
+    50%     { transform: scale(1.06); box-shadow: 0 0 26px 7px rgba(224,53,107,0.55); }
+  }
   .voice-btn {
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 1.08rem;
     letter-spacing: -0.01em;
-    color: var(--ink);
-    background: #161616;
-    border: 1px solid #2a2a2a;
+    color: #ffffff;
+    background: #e0356b;
+    border: none;
     border-radius: 100px;
-    padding: 11px 24px;
+    padding: 15px 32px;
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    animation: voicePulse 1.3s ease-in-out infinite;
   }
-  .voice-btn:hover { background: #1f1f1f; border-color: #3d3d3d; }
-  .voice-btn:active { transform: scale(0.98); }
+  .voice-btn:hover { background: #ec4d7e; }
+  .voice-btn:active { transform: scale(0.97); }
+  @media (prefers-reduced-motion: reduce) { .voice-btn { animation: none; } }
 
   /* MEDIA ROW — photo + reel side by side, equal height */
   .media-row {
@@ -506,6 +511,11 @@
     <div class="title">Meet Me</div>
     <div class="by">by <span class="name">Jen</span> 🌺</div>
   </div>
+  <div class="voice-row">
+    <button class="voice-btn" id="voiceBtn" onclick="(function(b){var a=document.getElementById('voiceAudio');if(a.paused){a.play();b.textContent='⏸ pause';}else{a.pause();b.textContent='▶ play to hear my voice';}})(this)">▶ play to hear my voice</button>
+    <audio id="voiceAudio" src="voice.mp3" preload="none" onended="document.getElementById('voiceBtn').textContent='▶ play to hear my voice'"></audio>
+  </div>
+
 
 
   <div class="media-row">
@@ -517,10 +527,6 @@
   </div>
   </div>
 
-  <div class="voice-row">
-    <button class="voice-btn" id="voiceBtn" onclick="(function(b){var a=document.getElementById('voiceAudio');if(a.paused){a.play();b.textContent='⏸ pause';}else{a.pause();b.textContent='▶ play to hear my voice';}})(this)">▶ play to hear my voice</button>
-    <audio id="voiceAudio" src="voice.mp3" preload="none" onended="document.getElementById('voiceBtn').textContent='▶ play to hear my voice'"></audio>
-  </div>
 
 
 
