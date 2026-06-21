@@ -441,6 +441,11 @@
     <div class="by">by <span class="name">Jen</span> 🌺</div>
   </div>
 
+  <div class="voice-row">
+    <button class="voice-btn" id="voiceBtn" onclick="(function(b){var a=document.getElementById('voiceAudio');if(a.paused){a.play();b.textContent='⏸ pause';}else{a.pause();b.textContent='▶ play to hear my voice';}})(this)">▶ play to hear my voice</button>
+    <audio id="voiceAudio" src="voice.mp3" preload="none" onended="document.getElementById('voiceBtn').textContent='▶ play to hear my voice'"></audio>
+  </div>
+
   <div class="reel-wrap">
     <div class="reel-label">🎬 my reel</div>
     <video class="reel" src="reel.mp4" poster="reel_poster.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
@@ -454,11 +459,6 @@
     ✈️ Telegram <a href="https://t.me/jenn_pei">@jenn_pei</a><span class="sep">·</span>
     💬 <a href="https://wa.me/19177431266">917-743-1266</a><span class="sep">·</span>
     ✉️ <a href="sms:+19177431266">text</a>
-  </div>
-
-  <div class="voice-row">
-    <button class="voice-btn" id="voiceBtn" onclick="(function(b){var a=document.getElementById('voiceAudio');if(a.paused){a.play();b.textContent='⏸ pause';}else{a.pause();b.textContent='▶ play to hear my voice';}})(this)">▶ play to hear my voice</button>
-    <audio id="voiceAudio" src="voice.mp3" preload="none" onended="document.getElementById('voiceBtn').textContent='▶ play to hear my voice'"></audio>
   </div>
 
   <div class="facts">
