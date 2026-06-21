@@ -1,6 +1,12 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "datejen.vercel.app" }],
+      "destination": "https://meetjen.vercel.app/",
+      "permanent": false
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "datejen.vercel.app" }],
       "destination": "https://meetjen.vercel.app/:path*",

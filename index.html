@@ -204,10 +204,20 @@
   .mm-col { flex:1 1 0; min-width:0; background:rgba(255,255,255,0.02); border:1px solid #1c1c1e; border-radius:14px; padding:13px 14px; }
   .mm-title { font-size:1.45rem !important; font-weight:300; text-align:left; margin:0 0 10px; letter-spacing:-0.02em; }
   .facts-v { display:flex; flex-direction:column; align-items:flex-start; gap:8px; background:none; box-shadow:none; padding:0; margin:0; }
-  .facts-v .f { font-size:0.92rem; line-height:1.4; }
+  .facts-v .f { font-size:0.92rem; line-height:1.4; flex-wrap:wrap; align-items:baseline; }
+  .facts-v .val { word-break:break-word; }
   .mf { display:flex; align-items:center; gap:8px; width:100%; }
   .match-in { flex:1; min-width:0; background:#0f0f10; border:1px solid #2a2a2a; border-radius:8px; color:var(--ink); font-family:'Inter',sans-serif; font-weight:300; font-size:0.88rem; padding:6px 9px; }
   .match-in:focus { outline:none; border-color:#4a4a4a; }
+
+  /* ME vs MY MATCH comparison grid */
+  .compare { display:grid; grid-template-columns:auto 1fr 1fr; gap:9px 12px; align-items:baseline; margin:18px 2px 26px; position:relative; z-index:2; }
+  .cmp-title { font-size:1.3rem; font-weight:300; letter-spacing:-0.02em; color:var(--ink); border-bottom:1px solid #242426; padding-bottom:6px; }
+  .cmp-cat { display:flex; align-items:center; gap:6px; font-size:0.82rem; color:var(--ink-soft); white-space:nowrap; }
+  .cmp-cat .emo { font-size:1.05em; }
+  .cmp-v { font-size:0.9rem; color:var(--ink); word-break:break-word; }
+
+  .bio { text-align:left; font-size:0.95rem; line-height:1.6; color:var(--ink); font-weight:300; margin:0 0 12px; }
 
   /* CONTACT */
   .contact { text-align: center; margin-bottom: 4px; font-size: 0.92rem; }
@@ -520,38 +530,30 @@
     ✉️ <a href="sms:+19177431266">text</a>
   </div>
 
-  <div class="me-match">
-    <div class="mm-col">
-      <h2 class="mm-title">ME</h2>
-      <div class="facts facts-v">
-    <span class="f"><span class="emo">👤</span><span class="val">Jen</span></span>
-    <span class="f"><span class="emo">🎂</span><span class="val">32</span></span>
-    <span class="f"><span class="emo">📍</span><span class="val">Redwood City, Bay Area</span></span>
-    <span class="f"><span class="emo">📏</span><span class="val">5'2.5"</span></span>
-    <span class="f"><span class="emo">💕</span><span class="val">men or women</span></span>
-    <span class="f"><span class="emo">🌏</span><span class="val">Taiwanese</span></span>
-    <span class="f"><span class="emo">🙏</span><span class="val">agnostic</span></span>
-    <span class="f"><span class="emo">🎓</span><span class="val">bachelor's</span></span>
-    <span class="f"><span class="emo">💼</span><span class="val">part-time marketing</span></span>
-    <span class="f"><span class="emo">💆</span><span class="lbl">vices:</span><span class="val">massage</span></span>
-    <span class="f"><span class="emo">👶</span><span class="val">wants kids — open to surrogacy</span></span>
-      </div>
-    </div>
-    <div class="mm-col">
-      <h2 class="mm-title">MY MATCH</h2>
-      <div class="facts facts-v">
-        <label class="mf"><span class="emo">🎂</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">📍</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">📏</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">💕</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">🌏</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">🙏</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">🎓</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">💼</span><input class="match-in" type="text" placeholder="fill in…"></label>
-        <label class="mf"><span class="emo">👶</span><input class="match-in" type="text" placeholder="fill in…"></label>
-      </div>
-    </div>
+  <div class="compare">
+    <div class="cmp-corner"></div>
+    <div class="cmp-title">ME</div>
+    <div class="cmp-title">MY MATCH</div>
+    <div class="cmp-cat"><span class="emo">👤</span>name</div><div class="cmp-v">Jen</div><div class="cmp-v">—</div>
+    <div class="cmp-cat"><span class="emo">🎂</span>age</div><div class="cmp-v">32</div><div class="cmp-v">32–55</div>
+    <div class="cmp-cat"><span class="emo">📍</span>location</div><div class="cmp-v">Redwood City, Bay Area</div><div class="cmp-v">Bay Area</div>
+    <div class="cmp-cat"><span class="emo">📏</span>height</div><div class="cmp-v">5&#x27;2.5&quot;</div><div class="cmp-v">5&#x27;8&quot; and above</div>
+    <div class="cmp-cat"><span class="emo">💕</span>gender</div><div class="cmp-v">men or women</div><div class="cmp-v">—</div>
+    <div class="cmp-cat"><span class="emo">🌏</span>ethnicity</div><div class="cmp-v">Taiwanese</div><div class="cmp-v">any</div>
+    <div class="cmp-cat"><span class="emo">🙏</span>religion</div><div class="cmp-v">agnostic</div><div class="cmp-v">any</div>
+    <div class="cmp-cat"><span class="emo">🎓</span>education</div><div class="cmp-v">bachelor&#x27;s</div><div class="cmp-v">bachelor&#x27;s or above</div>
+    <div class="cmp-cat"><span class="emo">💼</span>work</div><div class="cmp-v">part-time marketing</div><div class="cmp-v">at least part-time remote (unless you&#x27;re a doctor)</div>
+    <div class="cmp-cat"><span class="emo">💆</span>vices</div><div class="cmp-v">massage</div><div class="cmp-v">no drugs</div>
+    <div class="cmp-cat"><span class="emo">👶</span>kids</div><div class="cmp-v">wants kids — open to surrogacy</div><div class="cmp-v">—</div>
   </div>
+
+  <section>
+    <h2>about me</h2>
+    <p class="bio">I'm Jen — 32, Bay Area, flexible to potentially move only after a year. I like to build things for fun: AI apps, little tools that fix real problems. I love to think about what we could make, fix, or become together.</p>
+    <p class="bio">My personality is probably above-average direct, curious, analytical, bubbly, sweet, and warm.</p>
+    <p class="bio">I enjoy: bodywork massage, AI coding + building, hackathons, learning to DJ, biohacking, karaoke, being in the sun, grounding, jamming on instruments, making videos, building startups, cooking healthy food, and pickleball.</p>
+    <p class="bio">Right now I'm going through some health stuff, so my pace looks different — lots of lying down, sometimes texting even when you're right in front of me. I'm upfront about it because I'd rather you meet the real me than a polished highlight reel.</p>
+  </section>
 
   <section>
     <h2>summary of what i'm looking for</h2>
@@ -563,43 +565,43 @@
     <svg class="pie-svg" viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg">
       <!-- Slices -->
       <g>
-        <path d="M 250,200 L 250,80 A 120,120 0 1 1 205.83,311.58 Z" fill="#d83a4d" stroke="#fbf3df" stroke-width="2"/>
-        <path d="M 250,200 L 205.83,311.58 A 120,120 0 0 1 138.42,244.17 Z" fill="#1f8a82" stroke="#fbf3df" stroke-width="2"/>
-        <path d="M 250,200 L 138.42,244.17 A 120,120 0 0 1 141.42,148.90 Z" fill="#e89641" stroke="#fbf3df" stroke-width="2"/>
-        <path d="M 250,200 L 141.42,148.90 A 120,120 0 0 1 173.51,107.54 Z" fill="#3d8c5c" stroke="#fbf3df" stroke-width="2"/>
-        <path d="M 250,200 L 173.51,107.54 A 120,120 0 0 1 212.92,85.87 Z" fill="#7d5ba6" stroke="#fbf3df" stroke-width="2"/>
-        <path d="M 250,200 L 212.92,85.87 A 120,120 0 0 1 250,80 Z" fill="#f4c430" stroke="#fbf3df" stroke-width="2"/>
+        <path d="M 250,200 L 250,80 A 120,120 0 1 1 205.83,311.58 Z" fill="#a81d33" stroke="#0d0d0d" stroke-width="2"/>
+        <path d="M 250,200 L 205.83,311.58 A 120,120 0 0 1 138.42,244.17 Z" fill="#14635c" stroke="#0d0d0d" stroke-width="2"/>
+        <path d="M 250,200 L 138.42,244.17 A 120,120 0 0 1 141.42,148.90 Z" fill="#c46a12" stroke="#0d0d0d" stroke-width="2"/>
+        <path d="M 250,200 L 141.42,148.90 A 120,120 0 0 1 173.51,107.54 Z" fill="#29623f" stroke="#0d0d0d" stroke-width="2"/>
+        <path d="M 250,200 L 173.51,107.54 A 120,120 0 0 1 212.92,85.87 Z" fill="#573a7e" stroke="#0d0d0d" stroke-width="2"/>
+        <path d="M 250,200 L 212.92,85.87 A 120,120 0 0 1 250,80 Z" fill="#cf9b0e" stroke="#0d0d0d" stroke-width="2"/>
       </g>
 
       <!-- Inside labels on bigger slices -->
-      <g fill="#fbf3df" font-family="Inter, sans-serif" text-anchor="middle">
-        <text x="321" y="210" font-size="17" font-weight="700">ai coding</text>
-        <text x="321" y="232" font-size="15" font-weight="600">56%</text>
+      <g fill="#ffffff" font-family="Inter, sans-serif" text-anchor="middle">
+        <text x="321" y="205" font-size="19" font-weight="700">💻 ai coding</text>
+        <text x="321" y="230" font-size="18" font-weight="700">56%</text>
 
-        <text x="199" y="246" font-size="11" font-weight="600">marketing</text>
-        <text x="199" y="259" font-size="11" font-weight="600">13%</text>
+        <text x="196" y="244" font-size="14.5" font-weight="700">📣 marketing</text>
+        <text x="196" y="261" font-size="14.5" font-weight="700">13%</text>
 
-        <text x="178" y="194" font-size="11" font-weight="600">health</text>
-        <text x="178" y="207" font-size="11" font-weight="600">13%</text>
+        <text x="176" y="190" font-size="14.5" font-weight="700">🩺 health</text>
+        <text x="176" y="207" font-size="14.5" font-weight="700">13%</text>
       </g>
 
       <!-- Leader lines for small slices -->
-      <g stroke="#3e2723" stroke-width="1.3" fill="none" stroke-linecap="round">
-        <line x1="155" y1="127" x2="90" y2="60"/>
-        <line x1="192" y1="95" x2="220" y2="30"/>
-        <line x1="231" y1="82" x2="370" y2="38"/>
+      <g stroke="#8a8a8a" stroke-width="1.3" fill="none" stroke-linecap="round">
+        <line x1="155" y1="127" x2="122" y2="98"/>
+        <line x1="192" y1="95" x2="205" y2="60"/>
+        <line x1="231" y1="82" x2="290" y2="60"/>
       </g>
-      <g fill="#3e2723">
+      <g fill="#8a8a8a">
         <circle cx="155" cy="127" r="2.2"/>
         <circle cx="192" cy="95" r="2.2"/>
         <circle cx="231" cy="82" r="2.2"/>
       </g>
 
       <!-- Outside labels for small slices -->
-      <g fill="#e8e8e8" font-family="Inter, sans-serif" font-weight="400" font-size="13">
-        <text x="85" y="55" text-anchor="end">💪 exercising 7%</text>
-        <text x="220" y="22" text-anchor="middle">👯 friends 10%</text>
-        <text x="375" y="34" text-anchor="start">💕 dating 5%</text>
+      <g fill="#ededed" font-family="Inter, sans-serif" font-weight="600" font-size="14.5">
+        <text x="118" y="93" text-anchor="end">💪 exercising 7%</text>
+        <text x="205" y="50" text-anchor="middle">👯 friends 10%</text>
+        <text x="296" y="58" text-anchor="start">💕 dating 5%</text>
       </g>
     </svg>
   </section>
@@ -665,6 +667,7 @@
 
   <section id="qa">
     <h2 class="big-q">questions for you</h2>
+    <p class="lead">Type or voice-message your answer to each, then send it over Text, Telegram, or WhatsApp.</p>
 
     <p class="q bold">1. I am going through health issues right now. Due to my symptoms for the next few months, I may have to do activities that let me lie down a lot — is that okay?</p>
     <textarea class="ans" rows="2" placeholder="type your answer…"></textarea>
