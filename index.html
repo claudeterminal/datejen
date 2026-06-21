@@ -43,6 +43,11 @@
     overflow-x: hidden;
   }
 
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
   /* Decorative leaves */
   .leaf-decor {
     display: none; /* modern minimal — hide tropical leaves */
@@ -577,7 +582,9 @@
   <section>
     <h2>questions for you</h2>
 
-    <p class="q bold">are you okay with dating someone who has health conditions that may or may not be able to be fixed?</p>
+    <p class="q bold">due to my symptoms for the next few months, i may have to do activities that let me lie down a lot — is that okay?</p>
+
+    <p class="q bold">due to my current symptoms, a lot of the time i'll just text you while you're in front of me (you can talk out loud) — do you think that'd be okay?</p>
 
     <p class="q">do you get straight to the point, or anything but?</p>
 
@@ -597,5 +604,22 @@
   </div>
 
 </div>
+
+<script>
+/* Scroll reveal — each block fades/slides up as it enters the viewport.
+   .reveal is added by JS only, so if JS is off everything stays visible. */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var els = Array.prototype.slice.call(document.querySelectorAll('.wrap > *'));
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
