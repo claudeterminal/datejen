@@ -199,6 +199,16 @@
   .send-btn:hover { opacity:.85; }
   .send-btn:active { transform: scale(.97); }
 
+  /* ME / MY MATCH columns */
+  .me-match { display:flex; gap:14px; align-items:flex-start; margin:18px 2px 24px; position:relative; z-index:2; }
+  .mm-col { flex:1 1 0; min-width:0; background:rgba(255,255,255,0.02); border:1px solid #1c1c1e; border-radius:14px; padding:13px 14px; }
+  .mm-title { font-size:1.45rem !important; font-weight:300; text-align:left; margin:0 0 10px; letter-spacing:-0.02em; }
+  .facts-v { display:flex; flex-direction:column; align-items:flex-start; gap:8px; background:none; box-shadow:none; padding:0; margin:0; }
+  .facts-v .f { font-size:0.92rem; line-height:1.4; }
+  .mf { display:flex; align-items:center; gap:8px; width:100%; }
+  .match-in { flex:1; min-width:0; background:#0f0f10; border:1px solid #2a2a2a; border-radius:8px; color:var(--ink); font-family:'Inter',sans-serif; font-weight:300; font-size:0.88rem; padding:6px 9px; }
+  .match-in:focus { outline:none; border-color:#4a4a4a; }
+
   /* CONTACT */
   .contact { text-align: center; margin-bottom: 4px; font-size: 0.92rem; }
   .contact a {
@@ -510,7 +520,10 @@
     ✉️ <a href="sms:+19177431266">text</a>
   </div>
 
-  <div class="facts">
+  <div class="me-match">
+    <div class="mm-col">
+      <h2 class="mm-title">ME</h2>
+      <div class="facts facts-v">
     <span class="f"><span class="emo">👤</span><span class="val">Jen</span></span>
     <span class="f"><span class="emo">🎂</span><span class="val">32</span></span>
     <span class="f"><span class="emo">📍</span><span class="val">Redwood City, Bay Area</span></span>
@@ -522,6 +535,22 @@
     <span class="f"><span class="emo">💼</span><span class="val">part-time marketing</span></span>
     <span class="f"><span class="emo">💆</span><span class="lbl">vices:</span><span class="val">massage</span></span>
     <span class="f"><span class="emo">👶</span><span class="val">wants kids — open to surrogacy</span></span>
+      </div>
+    </div>
+    <div class="mm-col">
+      <h2 class="mm-title">MY MATCH</h2>
+      <div class="facts facts-v">
+        <label class="mf"><span class="emo">🎂</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">📍</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">📏</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">💕</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">🌏</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">🙏</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">🎓</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">💼</span><input class="match-in" type="text" placeholder="fill in…"></label>
+        <label class="mf"><span class="emo">👶</span><input class="match-in" type="text" placeholder="fill in…"></label>
+      </div>
+    </div>
   </div>
 
   <section>
